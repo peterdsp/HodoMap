@@ -1,0 +1,1470 @@
+{
+  "schemaVersion": 1,
+  "verifiedAt": "2026-07-26T00:00:00Z",
+  "notes": [
+    "Exactly 62 federation operators are included.",
+    "Daily directory checks retain metadata and content digests only.",
+    "TicketWeb targets are intentionally absent until written terms approval.",
+    "Timetable and official-site URLs are added only after source review."
+  ],
+  "operators": [
+    {
+      "id": "ktel-aigina",
+      "federationNumber": 1,
+      "slug": "aigina",
+      "nameEn": "KTEL Aigina",
+      "nameEl": "ΚΤΕΛ Αίγινας",
+      "directoryUrl": "https://ktelbus.com/ktel-aiginas/"
+    },
+    {
+      "id": "ktel-aitoloakarnania",
+      "federationNumber": 2,
+      "slug": "aitoloakarnania",
+      "nameEn": "KTEL Aitoloakarnania",
+      "nameEl": "ΚΤΕΛ Αιτωλοακαρνανίας",
+      "directoryUrl": "https://ktelbus.com/ktel-aitwloakarnanias/"
+    },
+    {
+      "id": "ktel-andros",
+      "federationNumber": 3,
+      "slug": "andros",
+      "nameEn": "KTEL Andros",
+      "nameEl": "ΚΤΕΛ Άνδρου",
+      "directoryUrl": "https://ktelbus.com/ktel-androu/"
+    },
+    {
+      "id": "ktel-argolida",
+      "federationNumber": 4,
+      "slug": "argolida",
+      "nameEn": "KTEL Argolida",
+      "nameEl": "ΚΤΕΛ Αργολίδας",
+      "directoryUrl": "https://ktelbus.com/ktel-argolidas/"
+    },
+    {
+      "id": "ktel-arkadia",
+      "federationNumber": 5,
+      "slug": "arkadia",
+      "nameEn": "KTEL Arkadia",
+      "nameEl": "ΚΤΕΛ Αρκαδίας",
+      "directoryUrl": "https://ktelbus.com/ktel-arkadias/"
+    },
+    {
+      "id": "ktel-arta",
+      "federationNumber": 6,
+      "slug": "arta",
+      "nameEn": "KTEL Arta",
+      "nameEl": "ΚΤΕΛ Άρτας",
+      "directoryUrl": "https://ktelbus.com/ktel-artas/"
+    },
+    {
+      "id": "ktel-attiki",
+      "federationNumber": 7,
+      "slug": "attiki",
+      "nameEn": "KTEL Attiki",
+      "nameEl": "ΚΤΕΛ Αττικής",
+      "directoryUrl": "https://ktelbus.com/ktel-attikhs/"
+    },
+    {
+      "id": "ktel-achaia",
+      "federationNumber": 8,
+      "slug": "achaia",
+      "nameEn": "KTEL Achaia",
+      "nameEl": "ΚΤΕΛ Αχαΐας",
+      "directoryUrl": "https://ktelbus.com/ktel-achaias/"
+    },
+    {
+      "id": "ktel-grevena",
+      "federationNumber": 9,
+      "slug": "grevena",
+      "nameEn": "KTEL Grevena",
+      "nameEl": "ΚΤΕΛ Γρεβενών",
+      "directoryUrl": "https://ktelbus.com/ktel-grevenwn/"
+    },
+    {
+      "id": "ktel-drama",
+      "federationNumber": 10,
+      "slug": "drama",
+      "nameEn": "KTEL Drama",
+      "nameEl": "ΚΤΕΛ Δράμας",
+      "directoryUrl": "https://ktelbus.com/ktel-dramas/"
+    },
+    {
+      "id": "ktel-evros",
+      "federationNumber": 11,
+      "slug": "evros",
+      "nameEn": "KTEL Evros",
+      "nameEl": "ΚΤΕΛ Έβρου",
+      "directoryUrl": "https://ktelbus.com/ktel-evrou/"
+    },
+    {
+      "id": "ktel-evia",
+      "federationNumber": 12,
+      "slug": "evia",
+      "nameEn": "KTEL Evia",
+      "nameEl": "ΚΤΕΛ Εύβοιας",
+      "directoryUrl": "https://ktelbus.com/ktel-euvoias/"
+    },
+    {
+      "id": "ktel-evrytania",
+      "federationNumber": 13,
+      "slug": "evrytania",
+      "nameEn": "KTEL Evrytania",
+      "nameEl": "ΚΤΕΛ Ευρυτανίας",
+      "directoryUrl": "https://ktelbus.com/ktel-euritanias/"
+    },
+    {
+      "id": "ktel-zakynthos",
+      "federationNumber": 14,
+      "slug": "zakynthos",
+      "nameEn": "KTEL Zakynthos",
+      "nameEl": "ΚΤΕΛ Ζακύνθου",
+      "directoryUrl": "https://ktelbus.com/ktel-zakunthou/"
+    },
+    {
+      "id": "ktel-ileia",
+      "federationNumber": 15,
+      "slug": "ileia",
+      "nameEn": "KTEL Ileia",
+      "nameEl": "ΚΤΕΛ Ηλείας",
+      "directoryUrl": "https://ktelbus.com/ktel-hleias/"
+    },
+    {
+      "id": "ktel-imathia",
+      "federationNumber": 16,
+      "slug": "imathia",
+      "nameEn": "KTEL Imathia",
+      "nameEl": "ΚΤΕΛ Ημαθίας",
+      "directoryUrl": "https://ktelbus.com/ktel-hmathias/"
+    },
+    {
+      "id": "ktel-heraklion-lasithi",
+      "federationNumber": 17,
+      "slug": "heraklion-lasithi",
+      "nameEn": "KTEL Heraklion-Lasithi",
+      "nameEl": "ΚΤΕΛ Ηρακλείου-Λασιθίου",
+      "directoryUrl": "https://ktelbus.com/ktel-hrakleiou-lasithiou/"
+    },
+    {
+      "id": "ktel-thesprotia",
+      "federationNumber": 18,
+      "slug": "thesprotia",
+      "nameEn": "KTEL Thesprotia",
+      "nameEl": "ΚΤΕΛ Θεσπρωτίας",
+      "directoryUrl": "https://ktelbus.com/ktel-thesprotias/"
+    },
+    {
+      "id": "ktel-thessaloniki",
+      "federationNumber": 19,
+      "slug": "thessaloniki",
+      "nameEn": "KTEL Thessaloniki",
+      "nameEl": "ΚΤΕΛ Θεσσαλονίκης",
+      "directoryUrl": "https://ktelbus.com/ktel-thessalonikis/"
+    },
+    {
+      "id": "ktel-thiva",
+      "federationNumber": 20,
+      "slug": "thiva",
+      "nameEn": "KTEL Thiva",
+      "nameEl": "ΚΤΕΛ Θήβας",
+      "directoryUrl": "https://ktelbus.com/ktel-thivas/"
+    },
+    {
+      "id": "ktel-thira",
+      "federationNumber": 21,
+      "slug": "thira",
+      "nameEn": "KTEL Thira",
+      "nameEl": "ΚΤΕΛ Θήρας",
+      "directoryUrl": "https://ktelbus.com/ktel-thiras/"
+    },
+    {
+      "id": "ktel-ios",
+      "federationNumber": 22,
+      "slug": "ios",
+      "nameEn": "KTEL Ios",
+      "nameEl": "ΚΤΕΛ Ίου",
+      "directoryUrl": "https://ktelbus.com/ktel-iou/"
+    },
+    {
+      "id": "ktel-ioannina",
+      "federationNumber": 23,
+      "slug": "ioannina",
+      "nameEn": "KTEL Ioannina",
+      "nameEl": "ΚΤΕΛ Ιωαννίνων",
+      "directoryUrl": "https://ktelbus.com/ktel-iwanninon/"
+    },
+    {
+      "id": "ktel-kavala",
+      "federationNumber": 24,
+      "slug": "kavala",
+      "nameEn": "KTEL Kavala",
+      "nameEl": "ΚΤΕΛ Καβάλας",
+      "directoryUrl": "https://ktelbus.com/ktel-kavalas/"
+    },
+    {
+      "id": "ktel-karditsa",
+      "federationNumber": 25,
+      "slug": "karditsa",
+      "nameEn": "KTEL Karditsa",
+      "nameEl": "ΚΤΕΛ Καρδίτσας",
+      "directoryUrl": "https://ktelbus.com/ktel-karditsas/"
+    },
+    {
+      "id": "ktel-karpathos",
+      "federationNumber": 26,
+      "slug": "karpathos",
+      "nameEn": "KTEL Karpathos",
+      "nameEl": "ΚΤΕΛ Καρπάθου",
+      "directoryUrl": "https://ktelbus.com/ktel-karpathou/"
+    },
+    {
+      "id": "ktel-kastoria",
+      "federationNumber": 27,
+      "slug": "kastoria",
+      "nameEn": "KTEL Kastoria",
+      "nameEl": "ΚΤΕΛ Καστοριάς",
+      "directoryUrl": "https://ktelbus.com/ktel-kastorias/"
+    },
+    {
+      "id": "ktel-corfu",
+      "federationNumber": 28,
+      "slug": "corfu",
+      "nameEn": "KTEL Corfu",
+      "nameEl": "ΚΤΕΛ Κέρκυρας",
+      "directoryUrl": "https://ktelbus.com/ktel-kerkuras/"
+    },
+    {
+      "id": "ktel-kefalonia",
+      "federationNumber": 29,
+      "slug": "kefalonia",
+      "nameEn": "KTEL Kefalonia",
+      "nameEl": "ΚΤΕΛ Κεφαλονιάς",
+      "directoryUrl": "https://ktelbus.com/ktel-kefallonias/"
+    },
+    {
+      "id": "ktel-kilkis",
+      "federationNumber": 30,
+      "slug": "kilkis",
+      "nameEn": "KTEL Kilkis",
+      "nameEl": "ΚΤΕΛ Κιλκίς",
+      "directoryUrl": "https://ktelbus.com/ktel-kilkis/"
+    },
+    {
+      "id": "ktel-kozani",
+      "federationNumber": 31,
+      "slug": "kozani",
+      "nameEn": "KTEL Kozani",
+      "nameEl": "ΚΤΕΛ Κοζάνης",
+      "directoryUrl": "https://ktelbus.com/ktel-kozanhs/"
+    },
+    {
+      "id": "ktel-corinthia",
+      "federationNumber": 32,
+      "slug": "corinthia",
+      "nameEn": "KTEL Corinthia",
+      "nameEl": "ΚΤΕΛ Κορινθίας",
+      "directoryUrl": "https://ktelbus.com/ktel-korinthias/"
+    },
+    {
+      "id": "ktel-kos",
+      "federationNumber": 33,
+      "slug": "kos",
+      "nameEn": "KTEL Kos",
+      "nameEl": "ΚΤΕΛ Κω",
+      "directoryUrl": "https://ktelbus.com/ktel-kw/"
+    },
+    {
+      "id": "ktel-lakonia",
+      "federationNumber": 34,
+      "slug": "lakonia",
+      "nameEn": "KTEL Lakonia",
+      "nameEl": "ΚΤΕΛ Λακωνίας",
+      "directoryUrl": "https://ktelbus.com/ktel-lakonias/"
+    },
+    {
+      "id": "ktel-larissa",
+      "federationNumber": 35,
+      "slug": "larissa",
+      "nameEn": "KTEL Larissa",
+      "nameEl": "ΚΤΕΛ Λάρισας",
+      "directoryUrl": "https://ktelbus.com/ktel-larisas/"
+    },
+    {
+      "id": "ktel-lesvos",
+      "federationNumber": 36,
+      "slug": "lesvos",
+      "nameEn": "KTEL Lesvos",
+      "nameEl": "ΚΤΕΛ Λέσβου",
+      "directoryUrl": "https://ktelbus.com/ktel-lesvou/"
+    },
+    {
+      "id": "ktel-lefkada",
+      "federationNumber": 37,
+      "slug": "lefkada",
+      "nameEn": "KTEL Lefkada",
+      "nameEl": "ΚΤΕΛ Λευκάδας",
+      "directoryUrl": "https://ktelbus.com/ktel-lefkadas/"
+    },
+    {
+      "id": "ktel-lemnos",
+      "federationNumber": 38,
+      "slug": "lemnos",
+      "nameEn": "KTEL Lemnos",
+      "nameEl": "ΚΤΕΛ Λήμνου",
+      "directoryUrl": "https://ktelbus.com/ktel-limnou/"
+    },
+    {
+      "id": "ktel-livadeia",
+      "federationNumber": 39,
+      "slug": "livadeia",
+      "nameEn": "KTEL Livadeia",
+      "nameEl": "ΚΤΕΛ Λιβαδειάς",
+      "directoryUrl": "https://ktelbus.com/ktel-leivadias/"
+    },
+    {
+      "id": "ktel-magnesia",
+      "federationNumber": 40,
+      "slug": "magnesia",
+      "nameEn": "KTEL Magnesia",
+      "nameEl": "ΚΤΕΛ Μαγνησίας",
+      "directoryUrl": "https://ktelbus.com/ktel-magnhsias/"
+    },
+    {
+      "id": "ktel-messinia",
+      "federationNumber": 41,
+      "slug": "messinia",
+      "nameEn": "KTEL Messinia",
+      "nameEl": "ΚΤΕΛ Μεσσηνίας",
+      "directoryUrl": "https://ktelbus.com/ktel-messhnias/"
+    },
+    {
+      "id": "ktel-mykonos",
+      "federationNumber": 42,
+      "slug": "mykonos",
+      "nameEn": "KTEL Mykonos",
+      "nameEl": "ΚΤΕΛ Μυκόνου",
+      "directoryUrl": "https://ktelbus.com/ktel-mukonou/"
+    },
+    {
+      "id": "ktel-naxos",
+      "federationNumber": 43,
+      "slug": "naxos",
+      "nameEn": "KTEL Naxos",
+      "nameEl": "ΚΤΕΛ Νάξου",
+      "directoryUrl": "https://ktelbus.com/ktel-naxou/"
+    },
+    {
+      "id": "ktel-xanthi",
+      "federationNumber": 44,
+      "slug": "xanthi",
+      "nameEn": "KTEL Xanthi",
+      "nameEl": "ΚΤΕΛ Ξάνθης",
+      "directoryUrl": "https://ktelbus.com/ktel-xanthis/"
+    },
+    {
+      "id": "ktel-paros",
+      "federationNumber": 45,
+      "slug": "paros",
+      "nameEn": "KTEL Paros",
+      "nameEl": "ΚΤΕΛ Πάρου",
+      "directoryUrl": "https://ktelbus.com/ktel-parou/"
+    },
+    {
+      "id": "ktel-pella",
+      "federationNumber": 46,
+      "slug": "pella",
+      "nameEn": "KTEL Pella",
+      "nameEl": "ΚΤΕΛ Πέλλας",
+      "directoryUrl": "https://ktelbus.com/ktel-pellas/"
+    },
+    {
+      "id": "ktel-pieria",
+      "federationNumber": 47,
+      "slug": "pieria",
+      "nameEn": "KTEL Pieria",
+      "nameEl": "ΚΤΕΛ Πιερίας",
+      "directoryUrl": "https://ktelbus.com/ktel-pierias/"
+    },
+    {
+      "id": "ktel-preveza",
+      "federationNumber": 48,
+      "slug": "preveza",
+      "nameEn": "KTEL Preveza",
+      "nameEl": "ΚΤΕΛ Πρέβεζας",
+      "directoryUrl": "https://ktelbus.com/ktel-prevezas/"
+    },
+    {
+      "id": "ktel-rhodope",
+      "federationNumber": 49,
+      "slug": "rhodope",
+      "nameEn": "KTEL Rhodope",
+      "nameEl": "ΚΤΕΛ Ροδόπης",
+      "directoryUrl": "https://ktelbus.com/ktel-rodophs/"
+    },
+    {
+      "id": "ktel-rhodes",
+      "federationNumber": 50,
+      "slug": "rhodes",
+      "nameEn": "KTEL Rhodes",
+      "nameEl": "ΚΤΕΛ Ρόδου",
+      "directoryUrl": "https://ktelbus.com/ktel-rodou/"
+    },
+    {
+      "id": "ktel-salamina",
+      "federationNumber": 51,
+      "slug": "salamina",
+      "nameEn": "KTEL Salamina",
+      "nameEl": "ΚΤΕΛ Σαλαμίνας",
+      "directoryUrl": "https://ktelbus.com/ktel-salaminas/"
+    },
+    {
+      "id": "ktel-samos",
+      "federationNumber": 52,
+      "slug": "samos",
+      "nameEn": "KTEL Samos",
+      "nameEl": "ΚΤΕΛ Σάμου",
+      "directoryUrl": "https://ktelbus.com/ktel-samou/"
+    },
+    {
+      "id": "ktel-serres",
+      "federationNumber": 53,
+      "slug": "serres",
+      "nameEn": "KTEL Serres",
+      "nameEl": "ΚΤΕΛ Σερρών",
+      "directoryUrl": "https://ktelbus.com/ktel-serrwn/"
+    },
+    {
+      "id": "ktel-syros",
+      "federationNumber": 54,
+      "slug": "syros",
+      "nameEn": "KTEL Syros",
+      "nameEl": "ΚΤΕΛ Σύρου",
+      "directoryUrl": "https://ktelbus.com/ktel-surou/"
+    },
+    {
+      "id": "ktel-tinos",
+      "federationNumber": 55,
+      "slug": "tinos",
+      "nameEn": "KTEL Tinos",
+      "nameEl": "ΚΤΕΛ Τήνου",
+      "directoryUrl": "https://ktelbus.com/ktel-thnou/"
+    },
+    {
+      "id": "ktel-trikala",
+      "federationNumber": 56,
+      "slug": "trikala",
+      "nameEn": "KTEL Trikala",
+      "nameEl": "ΚΤΕΛ Τρικάλων",
+      "directoryUrl": "https://ktelbus.com/ktel-trikalwn/"
+    },
+    {
+      "id": "ktel-fthiotida",
+      "federationNumber": 57,
+      "slug": "fthiotida",
+      "nameEn": "KTEL Fthiotida",
+      "nameEl": "ΚΤΕΛ Φθιώτιδας",
+      "directoryUrl": "https://ktelbus.com/ktel-fthiotidas/"
+    },
+    {
+      "id": "ktel-florina",
+      "federationNumber": 58,
+      "slug": "florina",
+      "nameEn": "KTEL Florina",
+      "nameEl": "ΚΤΕΛ Φλώρινας",
+      "directoryUrl": "https://ktelbus.com/ktel-florinas/"
+    },
+    {
+      "id": "ktel-fokida",
+      "federationNumber": 59,
+      "slug": "fokida",
+      "nameEn": "KTEL Fokida",
+      "nameEl": "ΚΤΕΛ Φωκίδας",
+      "directoryUrl": "https://ktelbus.com/ktel-fokidas/"
+    },
+    {
+      "id": "ktel-halkidiki",
+      "federationNumber": 60,
+      "slug": "halkidiki",
+      "nameEn": "KTEL Halkidiki",
+      "nameEl": "ΚΤΕΛ Χαλκιδικής",
+      "directoryUrl": "https://ktelbus.com/ktel-chalkidikis/"
+    },
+    {
+      "id": "ktel-chania-rethymno",
+      "federationNumber": 61,
+      "slug": "chania-rethymno",
+      "nameEn": "KTEL Chania-Rethymno",
+      "nameEl": "ΚΤΕΛ Χανίων-Ρεθύμνου",
+      "directoryUrl": "https://ktelbus.com/ktel-chaniwn-rethumnou/"
+    },
+    {
+      "id": "ktel-chios",
+      "federationNumber": 62,
+      "slug": "chios",
+      "nameEn": "KTEL Chios",
+      "nameEl": "ΚΤΕΛ Χίου",
+      "directoryUrl": "https://ktelbus.com/ktel-chiou/"
+    }
+  ],
+  "sources": [
+    {
+      "id": "directory-aigina",
+      "operatorId": "ktel-aigina",
+      "label": "KTEL Aigina federation directory page",
+      "url": "https://ktelbus.com/ktel-aiginas/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-aitoloakarnania",
+      "operatorId": "ktel-aitoloakarnania",
+      "label": "KTEL Aitoloakarnania federation directory page",
+      "url": "https://ktelbus.com/ktel-aitwloakarnanias/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-andros",
+      "operatorId": "ktel-andros",
+      "label": "KTEL Andros federation directory page",
+      "url": "https://ktelbus.com/ktel-androu/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-argolida",
+      "operatorId": "ktel-argolida",
+      "label": "KTEL Argolida federation directory page",
+      "url": "https://ktelbus.com/ktel-argolidas/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-arkadia",
+      "operatorId": "ktel-arkadia",
+      "label": "KTEL Arkadia federation directory page",
+      "url": "https://ktelbus.com/ktel-arkadias/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-arta",
+      "operatorId": "ktel-arta",
+      "label": "KTEL Arta federation directory page",
+      "url": "https://ktelbus.com/ktel-artas/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-attiki",
+      "operatorId": "ktel-attiki",
+      "label": "KTEL Attiki federation directory page",
+      "url": "https://ktelbus.com/ktel-attikhs/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-achaia",
+      "operatorId": "ktel-achaia",
+      "label": "KTEL Achaia federation directory page",
+      "url": "https://ktelbus.com/ktel-achaias/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-grevena",
+      "operatorId": "ktel-grevena",
+      "label": "KTEL Grevena federation directory page",
+      "url": "https://ktelbus.com/ktel-grevenwn/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-drama",
+      "operatorId": "ktel-drama",
+      "label": "KTEL Drama federation directory page",
+      "url": "https://ktelbus.com/ktel-dramas/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-evros",
+      "operatorId": "ktel-evros",
+      "label": "KTEL Evros federation directory page",
+      "url": "https://ktelbus.com/ktel-evrou/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-evia",
+      "operatorId": "ktel-evia",
+      "label": "KTEL Evia federation directory page",
+      "url": "https://ktelbus.com/ktel-euvoias/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-evrytania",
+      "operatorId": "ktel-evrytania",
+      "label": "KTEL Evrytania federation directory page",
+      "url": "https://ktelbus.com/ktel-euritanias/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-zakynthos",
+      "operatorId": "ktel-zakynthos",
+      "label": "KTEL Zakynthos federation directory page",
+      "url": "https://ktelbus.com/ktel-zakunthou/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-ileia",
+      "operatorId": "ktel-ileia",
+      "label": "KTEL Ileia federation directory page",
+      "url": "https://ktelbus.com/ktel-hleias/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-imathia",
+      "operatorId": "ktel-imathia",
+      "label": "KTEL Imathia federation directory page",
+      "url": "https://ktelbus.com/ktel-hmathias/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-heraklion-lasithi",
+      "operatorId": "ktel-heraklion-lasithi",
+      "label": "KTEL Heraklion-Lasithi federation directory page",
+      "url": "https://ktelbus.com/ktel-hrakleiou-lasithiou/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-thesprotia",
+      "operatorId": "ktel-thesprotia",
+      "label": "KTEL Thesprotia federation directory page",
+      "url": "https://ktelbus.com/ktel-thesprotias/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-thessaloniki",
+      "operatorId": "ktel-thessaloniki",
+      "label": "KTEL Thessaloniki federation directory page",
+      "url": "https://ktelbus.com/ktel-thessalonikis/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-thiva",
+      "operatorId": "ktel-thiva",
+      "label": "KTEL Thiva federation directory page",
+      "url": "https://ktelbus.com/ktel-thivas/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-thira",
+      "operatorId": "ktel-thira",
+      "label": "KTEL Thira federation directory page",
+      "url": "https://ktelbus.com/ktel-thiras/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-ios",
+      "operatorId": "ktel-ios",
+      "label": "KTEL Ios federation directory page",
+      "url": "https://ktelbus.com/ktel-iou/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-ioannina",
+      "operatorId": "ktel-ioannina",
+      "label": "KTEL Ioannina federation directory page",
+      "url": "https://ktelbus.com/ktel-iwanninon/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-kavala",
+      "operatorId": "ktel-kavala",
+      "label": "KTEL Kavala federation directory page",
+      "url": "https://ktelbus.com/ktel-kavalas/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-karditsa",
+      "operatorId": "ktel-karditsa",
+      "label": "KTEL Karditsa federation directory page",
+      "url": "https://ktelbus.com/ktel-karditsas/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-karpathos",
+      "operatorId": "ktel-karpathos",
+      "label": "KTEL Karpathos federation directory page",
+      "url": "https://ktelbus.com/ktel-karpathou/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-kastoria",
+      "operatorId": "ktel-kastoria",
+      "label": "KTEL Kastoria federation directory page",
+      "url": "https://ktelbus.com/ktel-kastorias/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-corfu",
+      "operatorId": "ktel-corfu",
+      "label": "KTEL Corfu federation directory page",
+      "url": "https://ktelbus.com/ktel-kerkuras/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-kefalonia",
+      "operatorId": "ktel-kefalonia",
+      "label": "KTEL Kefalonia federation directory page",
+      "url": "https://ktelbus.com/ktel-kefallonias/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-kilkis",
+      "operatorId": "ktel-kilkis",
+      "label": "KTEL Kilkis federation directory page",
+      "url": "https://ktelbus.com/ktel-kilkis/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-kozani",
+      "operatorId": "ktel-kozani",
+      "label": "KTEL Kozani federation directory page",
+      "url": "https://ktelbus.com/ktel-kozanhs/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-corinthia",
+      "operatorId": "ktel-corinthia",
+      "label": "KTEL Corinthia federation directory page",
+      "url": "https://ktelbus.com/ktel-korinthias/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-kos",
+      "operatorId": "ktel-kos",
+      "label": "KTEL Kos federation directory page",
+      "url": "https://ktelbus.com/ktel-kw/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-lakonia",
+      "operatorId": "ktel-lakonia",
+      "label": "KTEL Lakonia federation directory page",
+      "url": "https://ktelbus.com/ktel-lakonias/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-larissa",
+      "operatorId": "ktel-larissa",
+      "label": "KTEL Larissa federation directory page",
+      "url": "https://ktelbus.com/ktel-larisas/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-lesvos",
+      "operatorId": "ktel-lesvos",
+      "label": "KTEL Lesvos federation directory page",
+      "url": "https://ktelbus.com/ktel-lesvou/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-lefkada",
+      "operatorId": "ktel-lefkada",
+      "label": "KTEL Lefkada federation directory page",
+      "url": "https://ktelbus.com/ktel-lefkadas/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-lemnos",
+      "operatorId": "ktel-lemnos",
+      "label": "KTEL Lemnos federation directory page",
+      "url": "https://ktelbus.com/ktel-limnou/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-livadeia",
+      "operatorId": "ktel-livadeia",
+      "label": "KTEL Livadeia federation directory page",
+      "url": "https://ktelbus.com/ktel-leivadias/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-magnesia",
+      "operatorId": "ktel-magnesia",
+      "label": "KTEL Magnesia federation directory page",
+      "url": "https://ktelbus.com/ktel-magnhsias/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-messinia",
+      "operatorId": "ktel-messinia",
+      "label": "KTEL Messinia federation directory page",
+      "url": "https://ktelbus.com/ktel-messhnias/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-mykonos",
+      "operatorId": "ktel-mykonos",
+      "label": "KTEL Mykonos federation directory page",
+      "url": "https://ktelbus.com/ktel-mukonou/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-naxos",
+      "operatorId": "ktel-naxos",
+      "label": "KTEL Naxos federation directory page",
+      "url": "https://ktelbus.com/ktel-naxou/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-xanthi",
+      "operatorId": "ktel-xanthi",
+      "label": "KTEL Xanthi federation directory page",
+      "url": "https://ktelbus.com/ktel-xanthis/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-paros",
+      "operatorId": "ktel-paros",
+      "label": "KTEL Paros federation directory page",
+      "url": "https://ktelbus.com/ktel-parou/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-pella",
+      "operatorId": "ktel-pella",
+      "label": "KTEL Pella federation directory page",
+      "url": "https://ktelbus.com/ktel-pellas/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-pieria",
+      "operatorId": "ktel-pieria",
+      "label": "KTEL Pieria federation directory page",
+      "url": "https://ktelbus.com/ktel-pierias/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-preveza",
+      "operatorId": "ktel-preveza",
+      "label": "KTEL Preveza federation directory page",
+      "url": "https://ktelbus.com/ktel-prevezas/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-rhodope",
+      "operatorId": "ktel-rhodope",
+      "label": "KTEL Rhodope federation directory page",
+      "url": "https://ktelbus.com/ktel-rodophs/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-rhodes",
+      "operatorId": "ktel-rhodes",
+      "label": "KTEL Rhodes federation directory page",
+      "url": "https://ktelbus.com/ktel-rodou/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-salamina",
+      "operatorId": "ktel-salamina",
+      "label": "KTEL Salamina federation directory page",
+      "url": "https://ktelbus.com/ktel-salaminas/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-samos",
+      "operatorId": "ktel-samos",
+      "label": "KTEL Samos federation directory page",
+      "url": "https://ktelbus.com/ktel-samou/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-serres",
+      "operatorId": "ktel-serres",
+      "label": "KTEL Serres federation directory page",
+      "url": "https://ktelbus.com/ktel-serrwn/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-syros",
+      "operatorId": "ktel-syros",
+      "label": "KTEL Syros federation directory page",
+      "url": "https://ktelbus.com/ktel-surou/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-tinos",
+      "operatorId": "ktel-tinos",
+      "label": "KTEL Tinos federation directory page",
+      "url": "https://ktelbus.com/ktel-thnou/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-trikala",
+      "operatorId": "ktel-trikala",
+      "label": "KTEL Trikala federation directory page",
+      "url": "https://ktelbus.com/ktel-trikalwn/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-fthiotida",
+      "operatorId": "ktel-fthiotida",
+      "label": "KTEL Fthiotida federation directory page",
+      "url": "https://ktelbus.com/ktel-fthiotidas/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-florina",
+      "operatorId": "ktel-florina",
+      "label": "KTEL Florina federation directory page",
+      "url": "https://ktelbus.com/ktel-florinas/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-fokida",
+      "operatorId": "ktel-fokida",
+      "label": "KTEL Fokida federation directory page",
+      "url": "https://ktelbus.com/ktel-fokidas/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-halkidiki",
+      "operatorId": "ktel-halkidiki",
+      "label": "KTEL Halkidiki federation directory page",
+      "url": "https://ktelbus.com/ktel-chalkidikis/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-chania-rethymno",
+      "operatorId": "ktel-chania-rethymno",
+      "label": "KTEL Chania-Rethymno federation directory page",
+      "url": "https://ktelbus.com/ktel-chaniwn-rethumnou/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "directory-chios",
+      "operatorId": "ktel-chios",
+      "label": "KTEL Chios federation directory page",
+      "url": "https://ktelbus.com/ktel-chiou/",
+      "sourceKind": "operator_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 2097152,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "poays-directory",
+      "operatorId": null,
+      "label": "POAYS national KTEL directory",
+      "url": "https://ktelbus.com/category/ktel/",
+      "sourceKind": "federation_directory",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "unknown",
+      "retentionMode": "metadata_only",
+      "maxBytes": 4194304,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    },
+    {
+      "id": "greek-nap-catalog",
+      "operatorId": null,
+      "label": "Greek NAP long-distance bus dataset catalog",
+      "url": "https://data.nap.gov.gr/el/dataset/information-about-transport-by-long-distance-buses-in-greece",
+      "sourceKind": "national_access_point",
+      "cadence": "daily",
+      "enabled": true,
+      "rightsStatus": "permitted",
+      "retentionMode": "metadata_only",
+      "maxBytes": 4194304,
+      "expectedContentTypes": [
+        "text/html"
+      ]
+    }
+  ]
+}

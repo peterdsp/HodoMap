@@ -1,0 +1,596 @@
+diff --git a/ops/syrmos-api/README.md b/ops/syrmos-api/README.md
+index 10e7cd6..d08a500 100644
+--- a/ops/syrmos-api/README.md
++++ b/ops/syrmos-api/README.md
+@@ -95,6 +95,47 @@ import_athens_package  →  SQLite  ←  admin UI (writes)
+ Every write triggers `generator.generate()` which atomically replaces the JSON
+ files. ETag in the manifest body is the source of truth for client sync.
+
++## National KTEL coach platform
++
++KTEL is isolated from the rail database:
++
++```text
++ktel.db (ingestion, review, provenance)
++    -> publication compiler
++ktel-public.db (read-only public rows)
++    -> FastAPI coach queries
++out/ktel/manifest.json + immutable release-addressed JSON packs
++    -> nginx and offline clients
++```
++
++Bootstrap and publish:
++
++```bash
++export SYRMOS_KTEL_DB_PATH="$PWD/db/ktel.db"
++export SYRMOS_KTEL_PUBLIC_DB_PATH="$PWD/db/ktel-public.db"
++python -m scripts.ktel_pipeline seed
++python -m scripts.ktel_pipeline publish
++python -m syrmos_admin.generator
++```
++
++Public coach endpoints:
++
++| Path | Purpose |
++|---|---|
++| `/api/v1/coaches/manifest` | Release ID and immutable pack hashes |
++| `/api/v1/coaches/operators` | All 62 official intercity operators |
++| `/api/v1/coaches/coverage` | National and per-operator coverage truth |
++| `/api/v1/coaches/sources` | Provenance, rights, and retention policies |
++| `/api/v1/coaches/stops` | Reviewed published coach stops |
++| `/api/v1/coaches/routes` | Reviewed journey patterns |
++| `/api/v1/coaches/routes/{patternId}` | Ordered stops and reviewed geometry |
++| `/api/v1/coaches/journeys` | Date-specific published journeys |
++
++TicketWeb reads are scheduled ingestion only. They never run from public request
++traffic. Live access requires explicit terms approval and credentials injected
++outside the repository. See `ktel.env.example` and
++`docs/KTEL_NATIONAL_PLATFORM.md`.
++
+ ## Rollback
+
+ ```
+diff --git a/ops/syrmos-api/deploy.sh b/ops/syrmos-api/deploy.sh
+index dd2ed55..3d5cc28 100755
+--- a/ops/syrmos-api/deploy.sh
++++ b/ops/syrmos-api/deploy.sh
+@@ -35,6 +35,8 @@ ssh "$PI" bash <<'REMOTE'
+ set -euo pipefail
+ cd ~/syrmos-api
+ export SYRMOS_DB_PATH=/home/peterdsp/syrmos-api/db/syrmos.db
++export SYRMOS_KTEL_DB_PATH=/home/peterdsp/syrmos-api/db/ktel.db
++export SYRMOS_KTEL_PUBLIC_DB_PATH=/home/peterdsp/syrmos-api/db/ktel-public.db
+ export SYRMOS_API_OUT_DIR=/home/peterdsp/syrmos-api/out
+ if [ ! -d .venv ]; then
+   /usr/bin/python3 -m venv .venv
+@@ -43,6 +45,7 @@ fi
+ .venv/bin/pip install --quiet -r requirements.txt
+ mkdir -p db out backups
+ .venv/bin/python -m syrmos_admin.db
++.venv/bin/python -m syrmos_admin.ktel_db
+ REMOTE
+
+ echo ">>> running importer + generator (idempotent)"
+@@ -50,11 +53,14 @@ ssh "$PI" bash <<'REMOTE'
+ set -euo pipefail
+ cd ~/syrmos-api
+ export SYRMOS_DB_PATH=/home/peterdsp/syrmos-api/db/syrmos.db
++export SYRMOS_KTEL_DB_PATH=/home/peterdsp/syrmos-api/db/ktel.db
++export SYRMOS_KTEL_PUBLIC_DB_PATH=/home/peterdsp/syrmos-api/db/ktel-public.db
+ export SYRMOS_API_OUT_DIR=/home/peterdsp/syrmos-api/out
+ .venv/bin/python -m scripts.import_athens_package --apply
+ .venv/bin/python -m scripts.import_icons --apply
+ .venv/bin/python -m scripts.seed_fare_products
+ .venv/bin/python -m scripts.seed_station_offsets
++.venv/bin/python -m scripts.ktel_pipeline seed
+ .venv/bin/python -m syrmos_admin.scraper_24mmm || echo "scraper failed, continuing"
+ .venv/bin/python -m syrmos_admin.generator
+ REMOTE
+@@ -103,6 +109,50 @@ p.write_text(txt.replace(marker, block + marker, 1))
+ print("patched")
+ PY
+ fi
++if ! grep -q "/api/v1/coaches/manifest" "$conf"; then
++  cp "$conf" "$conf.bak.$(date +%s)"
++  python3 - <<'PY'
++from pathlib import Path
++p = Path.home() / "syrmos-proxy/nginx.conf"
++txt = p.read_text()
++marker = "# --- admin UI (FastAPI"
++block = """        # --- national KTEL coach registry manifest ---
++        location = /api/v1/coaches/manifest {
++            alias /home/peterdsp/syrmos-api/out/ktel/manifest.json;
++            default_type "application/json; charset=utf-8";
++            charset utf-8;
++            add_header Access-Control-Allow-Origin "*" always;
++            add_header Cache-Control "public, max-age=300, must-revalidate";
++            expires 5m;
++        }
++
++        location /api/v1/coaches/packs/ {
++            alias /home/peterdsp/syrmos-api/out/ktel/;
++            default_type "application/json; charset=utf-8";
++            charset utf-8;
++            add_header Access-Control-Allow-Origin "*" always;
++            add_header Cache-Control "public, max-age=31536000, immutable";
++            expires 365d;
++        }
++
++        # --- national KTEL coach read-only queries ---
++        location /api/v1/coaches/ {
++            proxy_pass http://127.0.0.1:8092/api/v1/coaches/;
++            proxy_http_version 1.1;
++            proxy_set_header Host $host;
++            proxy_set_header X-Real-IP $remote_addr;
++            proxy_set_header X-Forwarded-Proto $scheme;
++            add_header Access-Control-Allow-Origin "*" always;
++            add_header Cache-Control "public, max-age=60, must-revalidate";
++        }
++
++        """
++if marker not in txt:
++    raise SystemExit("nginx admin marker not found")
++p.write_text(txt.replace(marker, block + marker, 1))
++print("patched KTEL coach API")
++PY
++fi
+ /usr/sbin/nginx -t -c "$conf" -p ~/syrmos-proxy/
+ pid=$(cat ~/syrmos-proxy/nginx.pid 2>/dev/null || true)
+ if [ -n "$pid" ]; then
+diff --git a/ops/syrmos-api/nginx.locations.conf b/ops/syrmos-api/nginx.locations.conf
+index 3c8598c..dd3fb25 100644
+--- a/ops/syrmos-api/nginx.locations.conf
++++ b/ops/syrmos-api/nginx.locations.conf
+@@ -98,6 +98,55 @@ location = /api/operators {
+     expires 5m;
+ }
+
++# --- National KTEL coaches: immutable registry release manifest ---
++location = /api/v1/coaches/manifest {
++    alias /home/peterdsp/syrmos-api/out/ktel/manifest.json;
++    default_type "application/json; charset=utf-8";
++    charset utf-8;
++    add_header Access-Control-Allow-Origin "*" always;
++    add_header Cache-Control "public, max-age=300, must-revalidate";
++    expires 5m;
++}
++location = /api/ktel/manifest {
++    alias /home/peterdsp/syrmos-api/out/ktel/manifest.json;
++    default_type "application/json; charset=utf-8";
++    charset utf-8;
++    add_header Access-Control-Allow-Origin "*" always;
++    add_header Cache-Control "public, max-age=300, must-revalidate";
++    expires 5m;
++}
++
++# Immutable, release-addressed packs referenced by the manifest.
++location /api/v1/coaches/packs/ {
++    alias /home/peterdsp/syrmos-api/out/ktel/;
++    default_type "application/json; charset=utf-8";
++    charset utf-8;
++    add_header Access-Control-Allow-Origin "*" always;
++    add_header Cache-Control "public, max-age=31536000, immutable";
++    expires 365d;
++}
++
++# --- National KTEL coaches: read-only indexed queries ---
++# Upstream TicketWeb and operator sources are never called from request paths.
++location /api/v1/coaches/ {
++    proxy_pass http://127.0.0.1:8092/api/v1/coaches/;
++    proxy_http_version 1.1;
++    proxy_set_header Host $host;
++    proxy_set_header X-Real-IP $remote_addr;
++    proxy_set_header X-Forwarded-Proto $scheme;
++    add_header Access-Control-Allow-Origin "*" always;
++    add_header Cache-Control "public, max-age=60, must-revalidate";
++}
++location /api/ktel/ {
++    proxy_pass http://127.0.0.1:8092/api/ktel/;
++    proxy_http_version 1.1;
++    proxy_set_header Host $host;
++    proxy_set_header X-Real-IP $remote_addr;
++    proxy_set_header X-Forwarded-Proto $scheme;
++    add_header Access-Control-Allow-Origin "*" always;
++    add_header Cache-Control "public, max-age=60, must-revalidate";
++}
++
+ # --- STASY status + announcements feed scraped from stasy.gr daily ---
+ location = /api/announcements {
+     alias /home/peterdsp/syrmos-api/out/announcements.json;
+diff --git a/ops/syrmos-api/requirements.txt b/ops/syrmos-api/requirements.txt
+index fa581c9..0c31107 100644
+--- a/ops/syrmos-api/requirements.txt
++++ b/ops/syrmos-api/requirements.txt
+@@ -1,3 +1,5 @@
+ fastapi==0.115.5
+ uvicorn[standard]==0.32.1
+ python-multipart==0.0.12
++openpyxl==3.1.5
++eval-type-backport==0.2.2
+diff --git a/ops/syrmos-api/syrmos_admin/app.py b/ops/syrmos-api/syrmos_admin/app.py
+index cd0aaa6..ea1bbcc 100644
+--- a/ops/syrmos-api/syrmos_admin/app.py
++++ b/ops/syrmos-api/syrmos_admin/app.py
+@@ -9,6 +9,7 @@ Run: uvicorn syrmos_admin.app:app --host 127.0.0.1 --port 8091
+ """
+ from __future__ import annotations
+
++import json
+ import os
+ import pathlib
+ import re
+@@ -23,6 +24,8 @@ from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
+
+ from . import db as dbmod
+ from . import generator
++from . import ktel_api
++from . import ktel_db
+ from . import projector as projector_mod
+
+ ADMIN_TOKEN = os.environ.get("SYRMOS_ADMIN_TOKEN")  # fallback when CF Access is off
+@@ -948,6 +951,27 @@ def docs_page(_: str = Depends(auth)) -> HTMLResponse:
+         ("/api/train-timestamps",
+          "Per-train per-station HH:MM timestamps parsed from Hellenic Train PDFs. Apps prefer these over band projection where they exist.",
+          "(Re-ingested by scripts/ingest-train-timestamps.py)"),
++        ("/api/v1/coaches/manifest",
++         "National KTEL release ID plus immutable pack paths and SHA-256 hashes.",
++         "KTEL publication compiler"),
++        ("/api/v1/coaches/operators",
++         "All 62 official intercity KTEL registry entries with verified TicketWeb coverage.",
++         "scripts/ktel_pipeline.py seed"),
++        ("/api/v1/coaches/coverage",
++         "National and per-operator identity, timetable, stops, fares, and geometry coverage truth.",
++         "KTEL registry and reviewed publication"),
++        ("/api/v1/coaches/sources",
++         "Source authority, licence, rights, retention, and refresh policy.",
++         "pkg/ktel/operators.json"),
++        ("/api/v1/coaches/stops",
++         "Reviewed published physical coach stops. Candidate and quarantined rows are excluded.",
++         "KTEL review workflow"),
++        ("/api/v1/coaches/routes",
++         "Reviewed journey patterns, ordered stop counts, and geometry state.",
++         "KTEL review workflow"),
++        ("/api/v1/coaches/journeys?date=2026-07-26",
++         "Date-specific reviewed coach journeys. Empty results use unknown, never an implicit no-service claim.",
++         "KTEL review workflow"),
+     ]
+     rows = "".join(
+         f"<tr><td><a href='{e[0]}' target='_blank'><code class=small>{e[0]}</code></a></td>"
+@@ -1062,6 +1086,167 @@ def healthz() -> JSONResponse:
+     return JSONResponse({"ok": True})
+
+
++# National KTEL coach API. It reads from the isolated KTEL database and never
++# runs migrations on a public request path. Ingestion and publication remain
++# scheduled operator workflows, not user-triggered upstream calls.
++
++@contextmanager
++def get_ktel_db_readonly() -> Iterator[Any]:
++    try:
++        conn = ktel_db.connect(
++            ktel_db.DEFAULT_KTEL_PUBLIC_DB_PATH,
++            read_only=True,
++        )
++    except Exception as exc:
++        raise HTTPException(
++            status_code=503, detail="KTEL registry is not initialized"
++        ) from exc
++    try:
++        manifest_path = Path(
++            os.environ.get(
++                "SYRMOS_KTEL_MANIFEST_PATH",
++                str(
++                    Path(
++                        os.environ.get(
++                            "SYRMOS_API_OUT_DIR",
++                            Path(__file__).resolve().parent.parent / "out",
++                        )
++                    )
++                    / "ktel"
++                    / "manifest.json"
++                ),
++            )
++        )
++        db_release_id = ktel_api.release_id(conn)
++        manifest_release_id = None
++        for _ in range(2):
++            try:
++                manifest_release_id = json.loads(
++                    manifest_path.read_text(encoding="utf-8")
++                ).get("releaseId")
++            except (FileNotFoundError, OSError, ValueError):
++                manifest_release_id = None
++            if manifest_release_id == db_release_id and db_release_id:
++                break
++        if not db_release_id or manifest_release_id != db_release_id:
++            raise HTTPException(
++                status_code=503,
++                detail="KTEL publication is switching releases",
++                headers={"Retry-After": "1"},
++            )
++        yield conn
++    finally:
++        conn.close()
++
++
++@app.get("/api/v1/coaches/operators")
++@app.get("/api/ktel/operators", include_in_schema=False)
++def api_ktel_operators(
++    officialOnly: bool = True,
++    coverageStatus: str | None = None,
++) -> JSONResponse:
++    with get_ktel_db_readonly() as conn:
++        return JSONResponse({
++            "releaseId": ktel_api.release_id(conn),
++            "updatedAt": ktel_api.release_updated_at(conn),
++            "operators": ktel_api.operator_rows(
++                conn,
++                official_only=officialOnly,
++                coverage_status=coverageStatus,
++            ),
++        })
++
++
++@app.get("/api/v1/coaches/coverage")
++@app.get("/api/ktel/coverage", include_in_schema=False)
++def api_ktel_coverage() -> JSONResponse:
++    with get_ktel_db_readonly() as conn:
++        return JSONResponse(ktel_api.coverage_payload(conn))
++
++
++@app.get("/api/v1/coaches/sources")
++@app.get("/api/ktel/sources", include_in_schema=False)
++def api_ktel_sources() -> JSONResponse:
++    with get_ktel_db_readonly() as conn:
++        return JSONResponse(ktel_api.sources_payload(conn))
++
++
++@app.get("/api/v1/coaches/stops")
++@app.get("/api/ktel/stops", include_in_schema=False)
++def api_ktel_stops(
++    query: str | None = None,
++    operatorId: str | None = None,
++    coordinateStatus: str | None = None,
++    webActive: bool | None = None,
++    limit: int = 100,
++    offset: int = 0,
++) -> JSONResponse:
++    with get_ktel_db_readonly() as conn:
++        return JSONResponse(ktel_api.stops_payload(
++            conn,
++            query=query,
++            operator_id=operatorId,
++            coordinate_status=coordinateStatus,
++            web_active=webActive,
++            limit=limit,
++            offset=offset,
++        ))
++
++
++@app.get("/api/v1/coaches/routes")
++@app.get("/api/ktel/routes", include_in_schema=False)
++def api_ktel_routes(
++    operatorId: str | None = None,
++    query: str | None = None,
++    limit: int = 100,
++    offset: int = 0,
++) -> JSONResponse:
++    with get_ktel_db_readonly() as conn:
++        return JSONResponse(ktel_api.routes_payload(
++            conn,
++            operator_id=operatorId,
++            query=query,
++            limit=limit,
++            offset=offset,
++        ))
++
++
++@app.get("/api/v1/coaches/routes/{pattern_id}")
++@app.get("/api/ktel/routes/{pattern_id}", include_in_schema=False)
++def api_ktel_route_detail(pattern_id: str) -> JSONResponse:
++    with get_ktel_db_readonly() as conn:
++        payload = ktel_api.route_detail_payload(conn, pattern_id)
++    if payload is None:
++        raise HTTPException(status_code=404, detail="route pattern not found")
++    return JSONResponse(payload)
++
++
++@app.get("/api/v1/coaches/journeys")
++@app.get("/api/ktel/trips/search", include_in_schema=False)
++def api_ktel_journeys(
++    date: str,
++    originStopId: str | None = None,
++    destinationStopId: str | None = None,
++    operatorId: str | None = None,
++    limit: int = 100,
++) -> JSONResponse:
++    try:
++        _dt.date.fromisoformat(date)
++    except ValueError:
++        raise HTTPException(
++            status_code=400, detail="date must be YYYY-MM-DD"
++        ) from None
++    with get_ktel_db_readonly() as conn:
++        return JSONResponse(ktel_api.trips_payload(
++            conn,
++            service_date=date,
++            origin_stop_id=originStopId,
++            destination_stop_id=destinationStopId,
++            operator_id=operatorId,
++            limit=limit,
++        ))
++
++
+ # Public projector endpoint. Single source of truth for what the apps render
+ # in the Next Departures lists. It bypasses admin auth deliberately because it
+ # is read only.
+diff --git a/ops/syrmos-api/syrmos_admin/generator.py b/ops/syrmos-api/syrmos_admin/generator.py
+index b0f0f6b..8001fb2 100644
+--- a/ops/syrmos-api/syrmos_admin/generator.py
++++ b/ops/syrmos-api/syrmos_admin/generator.py
+@@ -9,6 +9,7 @@ from __future__ import annotations
+ import hashlib
+ import json
+ import os
++import shutil
+ import sqlite3
+ from collections import defaultdict
+ from datetime import date as _date, datetime, timedelta as _timedelta, timezone
+@@ -16,6 +17,10 @@ from pathlib import Path
+ from typing import Any
+
+ from . import db as dbmod
++from . import ktel_api
++from . import ktel_db
++from . import ktel_publish
++from . import ktel_registry
+
+ DEFAULT_OUT = Path(os.environ.get(
+     "SYRMOS_API_OUT_DIR",
+@@ -797,7 +802,12 @@ def _line_schedule(conn: sqlite3.Connection, line_id: str) -> dict:
+     }
+
+
+-def generate(out_dir: Path = DEFAULT_OUT, db_path: str | None = None) -> dict:
++def generate(
++    out_dir: Path = DEFAULT_OUT,
++    db_path: str | None = None,
++    ktel_db_path: str | None = None,
++    ktel_public_db_path: str | None = None,
++) -> dict:
+     """Write all snapshots; bump meta.version and meta.etag in the DB."""
+     out_dir.mkdir(parents=True, exist_ok=True)
+     with dbmod.connect(db_path or dbmod.DEFAULT_DB_PATH) as conn:
+@@ -903,7 +913,7 @@ def generate(out_dir: Path = DEFAULT_OUT, db_path: str | None = None) -> dict:
+             "UPDATE meta SET value=strftime('%Y-%m-%dT%H:%M:%SZ','now') WHERE key='updated_at'"
+         )
+
+-        return {
++        result = {
+             "out_dir": str(out_dir),
+             "version": manifest_payload["version"],
+             "manifest_etag": manifest_hash,
+@@ -917,6 +927,77 @@ def generate(out_dir: Path = DEFAULT_OUT, db_path: str | None = None) -> dict:
+                 *[f"schedules/{lid}.json" for lid in line_ids],
+             ],
+         }
++    result["ktel"] = _generate_ktel_snapshots(
++        out_dir,
++        ktel_db_path or ktel_db.DEFAULT_KTEL_DB_PATH,
++        ktel_public_db_path or ktel_db.DEFAULT_KTEL_PUBLIC_DB_PATH,
++    )
++    return result
++
++
++def _generate_ktel_snapshots(
++    out_dir: Path,
++    db_path: str,
++    public_db_path: str,
++) -> dict[str, Any]:
++    """Build one immutable KTEL registry release from the isolated KTEL DB."""
++    with ktel_db.connect(db_path) as conn:
++        ktel_db.migrate(conn)
++        ktel_registry.seed_registry(conn)
++    publication = ktel_publish.compile_public_database(
++        ingest_db_path=db_path,
++        public_db_path=public_db_path,
++    )
++    with ktel_db.connect(public_db_path, read_only=True) as conn:
++        operators = ktel_api.registry_payload(conn)
++        coverage = ktel_api.coverage_payload(conn)
++        sources = ktel_api.sources_payload(conn)
++
++    directory = out_dir / "ktel"
++    release_id = publication["releaseId"]
++    operators_name = f"{release_id}-operators.json"
++    coverage_name = f"{release_id}-coverage.json"
++    sources_name = f"{release_id}-sources.json"
++    operators_hash = _atomic_write_json(directory / operators_name, operators)
++    coverage_hash = _atomic_write_json(directory / coverage_name, coverage)
++    sources_hash = _atomic_write_json(directory / sources_name, sources)
++    manifest = {
++        "schemaVersion": 1,
++        "releaseId": release_id,
++        "updatedAt": operators["updatedAt"],
++        "completeness": "registry_complete_timetables_partial",
++        "files": {
++            "operators": {
++                "path": f"packs/{operators_name}",
++                "sha256": operators_hash,
++            },
++            "coverage": {
++                "path": f"packs/{coverage_name}",
++                "sha256": coverage_hash,
++            },
++            "sources": {
++                "path": f"packs/{sources_name}",
++                "sha256": sources_hash,
++            },
++        },
++    }
++    manifest_path = directory / "manifest.json"
++    if manifest_path.exists():
++        previous = directory / "manifest.previous.json"
++        previous_tmp = directory / "manifest.previous.json.tmp"
++        shutil.copy2(manifest_path, previous_tmp)
++        os.replace(previous_tmp, previous)
++    manifest_hash = _atomic_write_json(manifest_path, manifest)
++    return {
++        "releaseId": release_id,
++        "manifestHash": manifest_hash,
++        "files": [
++            "ktel/manifest.json",
++            f"ktel/{operators_name}",
++            f"ktel/{coverage_name}",
++            f"ktel/{sources_name}",
++        ],
++    }
+
+
+ def _bump_version(conn: sqlite3.Connection) -> int:
+diff --git a/ops/syrmos-api/systemd/syrmos-admin.service b/ops/syrmos-api/systemd/syrmos-admin.service
+index 1f6b1f7..2cf399a 100644
+--- a/ops/syrmos-api/systemd/syrmos-admin.service
++++ b/ops/syrmos-api/systemd/syrmos-admin.service
+@@ -8,6 +8,8 @@ Type=simple
+ User=peterdsp
+ WorkingDirectory=/home/peterdsp/syrmos-api
+ Environment=SYRMOS_DB_PATH=/home/peterdsp/syrmos-api/db/syrmos.db
++Environment=SYRMOS_KTEL_DB_PATH=/home/peterdsp/syrmos-api/db/ktel.db
++Environment=SYRMOS_KTEL_PUBLIC_DB_PATH=/home/peterdsp/syrmos-api/db/ktel-public.db
+ Environment=SYRMOS_API_OUT_DIR=/home/peterdsp/syrmos-api/out
+ EnvironmentFile=-/home/peterdsp/syrmos-api/admin.env
+ ExecStart=/home/peterdsp/syrmos-api/.venv/bin/uvicorn syrmos_admin.app:app --host 127.0.0.1 --port 8092
+diff --git a/ops/syrmos-api/systemd/syrmos-backup.service b/ops/syrmos-api/systemd/syrmos-backup.service
+index 81f7304..5c1b808 100644
+--- a/ops/syrmos-api/systemd/syrmos-backup.service
++++ b/ops/syrmos-api/systemd/syrmos-backup.service
+@@ -5,6 +5,6 @@ Description=Daily SQLite backup for Syrmos
+ Type=oneshot
+ User=peterdsp
+ WorkingDirectory=/home/peterdsp/syrmos-api
+-ExecStart=/bin/bash -c 'mkdir -p /home/peterdsp/syrmos-api/backups && /usr/bin/sqlite3 /home/peterdsp/syrmos-api/db/syrmos.db ".backup /home/peterdsp/syrmos-api/backups/syrmos-$(date +%%Y-%%m-%%d).db" && find /home/peterdsp/syrmos-api/backups -name "syrmos-*.db" -mtime +30 -delete'
++ExecStart=/bin/bash -c 'mkdir -p /home/peterdsp/syrmos-api/backups && /usr/bin/sqlite3 /home/peterdsp/syrmos-api/db/syrmos.db ".backup /home/peterdsp/syrmos-api/backups/syrmos-$(date +%%Y-%%m-%%d).db" && /usr/bin/sqlite3 /home/peterdsp/syrmos-api/db/ktel.db ".backup /home/peterdsp/syrmos-api/backups/ktel-$(date +%%Y-%%m-%%d).db" && find /home/peterdsp/syrmos-api/backups -name "syrmos-*.db" -mtime +30 -delete && find /home/peterdsp/syrmos-api/backups -name "ktel-*.db" -mtime +30 -delete'
+ StandardOutput=append:/home/peterdsp/syrmos-api/backup.log
+ StandardError=append:/home/peterdsp/syrmos-api/backup.log
+diff --git a/ops/syrmos-api/systemd/syrmos-seed-daily.service b/ops/syrmos-api/systemd/syrmos-seed-daily.service
+index 83153e5..433fa0f 100644
+--- a/ops/syrmos-api/systemd/syrmos-seed-daily.service
++++ b/ops/syrmos-api/systemd/syrmos-seed-daily.service
+@@ -9,6 +9,8 @@ User=peterdsp
+ WorkingDirectory=/home/peterdsp/syrmos-api
+ Environment=PIPELINE_ROOT=/home/peterdsp/syrmos-api
+ Environment=SYRMOS_DB_PATH=/home/peterdsp/syrmos-api/db/syrmos.db
++Environment=SYRMOS_KTEL_DB_PATH=/home/peterdsp/syrmos-api/db/ktel.db
++Environment=SYRMOS_KTEL_PUBLIC_DB_PATH=/home/peterdsp/syrmos-api/db/ktel-public.db
+ Environment=SYRMOS_API_OUT_DIR=/home/peterdsp/syrmos-api/out
+ ExecStart=/bin/bash -c '\
+   set -e; cd /home/peterdsp/syrmos-api; \
+@@ -19,6 +21,7 @@ ExecStart=/bin/bash -c '\
+   .venv/bin/python -m scripts.import_legacy_station_attrs --seed legacy_stations.json || true; \
+   .venv/bin/python -m scripts.seed_thessaloniki; \
+   .venv/bin/python -m scripts.seed_greek_corridors; \
++  .venv/bin/python -m scripts.ktel_pipeline seed; \
+   .venv/bin/python -m syrmos_admin.generator'
+ Nice=10
+ IOSchedulingClass=best-effort

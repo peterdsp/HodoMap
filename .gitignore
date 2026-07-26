@@ -1,0 +1,138 @@
+# macOS and operating-system files
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+Thumbs.db
+Desktop.ini
+
+# Editors and local workspaces
+.idea/
+.fleet/
+.vscode/
+*.swp
+*.swo
+*~
+.history/
+
+# Environment variables and credentials
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.pem
+*.key
+*.p12
+*.mobileprovision
+*.jks
+*.keystore
+google-services.json
+GoogleService-Info.plist
+secrets.properties
+
+# Logs and diagnostics
+*.log
+logs/
+crashlytics-build.properties
+
+# Kotlin, Gradle and KMP
+.gradle/
+.kotlin/
+.konan/
+**/build/
+!**/src/**/build/
+local.properties
+out/
+captures/
+*.hprof
+
+# Android
+.cxx/
+.externalNativeBuild/
+*.apk
+*.aab
+*.ap_
+*.dex
+
+# Xcode, Swift and CocoaPods
+DerivedData/
+*.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+*.xcuserstate
+*.xcscmblueprint
+*.xccheckout
+*.moved-aside
+*.ipa
+*.dSYM
+*.dSYM.zip
+.build/
+.swiftpm/
+Pods/
+
+# Node.js and Web
+node_modules/
+.next/
+.nuxt/
+.svelte-kit/
+dist/
+coverage/
+.turbo/
+.parcel-cache/
+.eslintcache
+*.tsbuildinfo
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.Python
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.egg-info/
+
+# SQLite runtime and local databases
+*.db
+*.db-journal
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite-journal
+*.sqlite-shm
+*.sqlite-wal
+
+# Generated, private or rights-restricted transit data
+/data/raw/
+/data/staging/
+/data/private/
+/data/releases/
+/data/cache/
+/server/cache/
+/server/out/
+/ops/backups/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.bak
+*.orig
+
+# Signing and deployment overrides
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/
+fastlane/test_output/
+terraform.tfstate
+terraform.tfstate.*
+*.tfvars
+!*.tfvars.example
