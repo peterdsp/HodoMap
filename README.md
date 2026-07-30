@@ -19,7 +19,10 @@ Understand what is verified, what is current and where to book officially.
 HodoMap brings Greece's fragmented intercity coach information into one
 independent application. Travelers can search journeys, inspect stops and
 route maps, save verified schedules for offline use and continue to each
-operator's official booking service.
+operator's official booking service. When an operator does not sell
+electronically, HodoMap provides its verified ticket-office and contact
+information instead. Passengers can save trips, retain an explicitly imported
+ticket securely on their device, and receive opt-in travel notifications.
 
 The product is designed for residents and visitors, with Greek, English and
 Albanian treated as first-class languages.
@@ -27,6 +30,12 @@ Albanian treated as first-class languages.
 HodoMap does not pretend that unavailable data is complete. Every public
 timetable is linked to its source, effective period, retrieval time and review
 state.
+
+HodoMap's differentiating product strategy is to become Greece's intercity
+coach certainty layer: verify the date-specific journey, identify the exact
+boarding point, provide an official purchase or contact action, and keep the
+trip ready offline. See the
+[product differentiation strategy](docs/PRODUCT_DIFFERENTIATION.md).
 
 ## Product principles
 
@@ -37,7 +46,12 @@ state.
 - **Offline where it matters.** Reviewed schedules and stop data should remain
   useful with poor connectivity.
 - **Official booking handoff.** HodoMap informs and routes users to the
-  operator. It does not issue tickets without written authority.
+  operator. It does not issue tickets without written authority. Operators
+  without electronic ticketing receive a verified contact and physical
+  ticket-office fallback.
+- **Passenger-owned travel wallet.** Saved trips and imported tickets remain
+  local by default. Push services receive no ticket, barcode, passenger, or
+  booking-reference data.
 - **Visible freshness.** Users can see when information was checked and which
   source supports it.
 - **Privacy by default.** Location and favorites stay on the device unless a

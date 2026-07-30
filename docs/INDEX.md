@@ -5,6 +5,8 @@
 - [National execution plan](NATIONAL_EXECUTION_PLAN.md)
 - [Roadmap](ROADMAP.md)
 - [Design system](DESIGN_SYSTEM.md)
+- [Product differentiation strategy](PRODUCT_DIFFERENTIATION.md)
+- [Live coach map and ETA product analysis](LIVE_COACH_MAP_AND_ETA.md)
 
 ## Engineering and data
 

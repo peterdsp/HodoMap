@@ -175,6 +175,64 @@ Information order:
 The official booking action appears after journey details and names the
 operator.
 
+### Official purchase and contact card
+
+When a verified official online store exists:
+
+- Primary action says `Buy from KTEL <operator>`.
+- An external-link icon and official operator domain are visible.
+- The action opens the device's external default browser with one tap.
+- Journey details are prefilled only through a tested official deep link.
+- Supporting text explains that the operator manages payment, tickets, changes,
+  and refunds.
+
+When electronic ticketing is unavailable:
+
+- Replace the purchase action with `How to buy this ticket`.
+- Show the relevant origin ticket office first.
+- Provide verified call, email, address, opening hours, directions, website,
+  and copy-details actions when available.
+- Show a verification date and source status.
+- Omit unpublished fields instead of guessing.
+
+When availability has not been investigated, say
+`Electronic ticketing unknown`, not `Electronic tickets unavailable`.
+
+### Map journey bottom sheet
+
+Tapping a coach, predicted coach, or journey opens a bottom sheet containing:
+
+- Journey status, next stop, ETA, and final destination.
+- `Save trip`.
+- `Buy from KTEL <operator>` or `How to buy`.
+- `View saved ticket` after explicit ticket import.
+- `Contact KTEL`.
+- `Journey details`.
+
+The bottom sheet stays inside HodoMap. Official-store checkout opens outside
+HodoMap in the device browser.
+
+### Saved trip card
+
+Shows journey date, origin, destination, operator, departure, current status,
+ticket status, notification state, and offline-data freshness.
+
+Primary action changes with state:
+
+- `Buy ticket`
+- `Add ticket`
+- `View ticket`
+- `View live journey`
+- `View completed trip`
+
+### Saved ticket card
+
+- Shows the original imported ticket or Wallet status.
+- Clearly distinguishes a boarding ticket from a booking confirmation.
+- Provides `Open original`, `Share`, `Export`, and `Delete`.
+- Supports optional biometric protection.
+- Never displays a ticket preview in the app switcher.
+
 ### Operator badge
 
 Operator badges are neutral text components. Do not reproduce an operator logo
@@ -206,20 +264,23 @@ coverage.
 
 Shows geography or operator, release date, size, freshness and update action.
 
-## Twelve core screens
+## Fifteen core screens
 
 1. Coach home and journey search.
 2. Place and stop picker.
 3. Journey results.
 4. Journey detail.
 5. Route map.
-6. Operator directory.
-7. Operator detail and official contacts.
-8. Station and stop detail.
-9. Offline pack management.
-10. Coverage and source transparency.
-11. Service alerts and seasonal changes.
-12. Settings, language, accessibility and independence statement.
+6. My trips.
+7. Saved trip detail and notification settings.
+8. Saved ticket import and protected viewer.
+9. Operator directory.
+10. Operator detail and official contacts.
+11. Station and stop detail.
+12. Offline pack management.
+13. Coverage and source transparency.
+14. Service alerts and seasonal changes.
+15. Settings, language, accessibility and independence statement.
 
 ## Screen direction
 
@@ -238,7 +299,9 @@ remains complete without the map.
 ### Journey detail
 
 Lead with times and terminals. Follow with route timeline, map, source status,
-service notes and the official booking handoff.
+service notes and the official booking handoff. If electronic booking is not
+available, the handoff becomes a complete KTEL contact and physical
+ticket-office card.
 
 ## Motion
 

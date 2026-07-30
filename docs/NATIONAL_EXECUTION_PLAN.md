@@ -75,9 +75,20 @@ A resident or visitor must be able to:
 5. Continue to the official operator service to reserve or buy a ticket.
 6. Use a useful offline snapshot when the network is unavailable.
 7. See an honest partial-coverage message where data is missing or blocked.
+8. See verified phone, email, ticket-office, address, hours, and directions
+   when the operator does not offer electronic ticketing.
+
+The consumer strategy is defined in
+[Product differentiation strategy](PRODUCT_DIFFERENTIATION.md). Its launch
+wedge is Web-first verified journey discovery plus an installable private trip
+companion, expanded through complete connected corridors rather than
+unsupported national claims.
 
 The service must not sell tickets, process payment, retain passenger details,
 or impersonate an operator without a later written commercial agreement.
+The client may store an explicitly imported ticket locally for passenger
+convenience, but ticket artifacts and booking references must not enter the
+HodoMap server, analytics, logs, or push payloads.
 
 ## 3. Definition of national completion
 
@@ -94,7 +105,7 @@ Each operator receives a coverage level:
 | R2 | Stops reviewed | Stop inventory normalized and geographic errors quarantined |
 | R3 | Timetable usable | Routes, trips, calendars, and exceptions published |
 | R4 | Geometry usable | Reviewed stop order and road geometry published |
-| R5 | Booking handoff | Official deep link tested without issuing a ticket |
+| R5 | Sales handoff | Official deep link tested, or physical purchase and contact fallback verified |
 | R6 | Production monitored | Refresh job, freshness alert, fixtures, and owner active |
 
 The national public beta gate is:
@@ -112,6 +123,8 @@ The national 1.0 gate is:
   is unavailable and a manual official-source handoff is provided.
 - At least 90 percent of published journey patterns at R4.
 - All operators with online booking at R5.
+- All operators without online booking have an R5 physical purchase and contact
+  fallback.
 - All production adapters at R6.
 - iOS, Android, Web, API, offline packs, monitoring, legal, and accessibility
   gates passed.
@@ -556,9 +569,25 @@ Estimated effort: 6 to 10 person-weeks, partly parallel
 - View trip details and intermediate stops.
 - View reviewed road geometry.
 - Save favorites and recent searches locally.
+- Save complete journeys under `My trips`.
+- Import an official ticket locally or link a system Wallet ticket to a saved
+  trip.
+- Receive opt-in departure, delay, cancellation, stop, traffic, and
+  travel-readiness notifications.
 - Download offline regional or operator packs.
 - Open the official booking page.
+- Contact the relevant KTEL or ticket office when online purchase is not
+  available.
 - View source, freshness, coverage, and correction link.
+
+The scheduled route and intermediate-stop experience must implement the
+degraded states in
+[Live coach map and ETA product analysis](LIVE_COACH_MAP_AND_ETA.md). Offline
+packs should support clearly labelled estimated coach positions and
+seasonal or holiday-adjusted ETA ranges when permitted historical profiles are
+available. True live coach markers, momentary vehicle speed, and followed
+journey alerts remain enhancements for operators with authorized and healthy
+real-time feeds. Live coverage is not a national client launch gate.
 
 ### Required screens
 
@@ -567,23 +596,46 @@ Estimated effort: 6 to 10 person-weeks, partly parallel
 3. Journey results.
 4. Journey detail.
 5. Route map.
-6. Operator directory.
-7. Operator detail and official contacts.
-8. Station detail.
-9. Offline pack management.
-10. Coverage and source transparency.
-11. Service alerts and seasonal changes.
-12. Settings, language, accessibility, and disclaimer.
+6. My trips.
+7. Saved trip detail and notification settings.
+8. Saved ticket import and protected viewer.
+9. Operator directory.
+10. Operator detail and official contacts.
+11. Station detail.
+12. Offline pack management.
+13. Coverage and source transparency.
+14. Service alerts and seasonal changes.
+15. Settings, language, accessibility, and disclaimer.
 
 ### Product rules
 
 - Do not show a purchase button if only a timetable is known.
 - A booking button must name the external operator.
+- A booking link opens the device's external default browser with one tap.
+- HodoMap must not embed or inspect an operator checkout.
+- Prefer a verified journey deep link, then a verified operator ticket store.
+- When electronic ticketing is unavailable, replace purchase with verified
+  phone, email, ticket-office address, opening hours, website, and directions.
+- When electronic-ticket availability has not been investigated, show
+  `Electronic ticketing unknown`, not `Unavailable`.
+- Every booking and contact field requires its own source and verification
+  date.
+- HodoMap must not receive passenger, login, payment, booking, or ticket data
+  from the external store.
+- A passenger may explicitly import an original ticket into protected local
+  storage or link its system Wallet status to a saved trip.
+- Ticket files, barcodes, passenger labels, and booking references remain local
+  and never enter analytics, logs, server requests, or push payloads.
+- Notifications are opt-in per saved trip and identify whether information is
+  live, calculated, predicted, or scheduled.
+- Offline notifications use only the saved timetable and downloaded prediction
+  profiles and cannot claim current traffic or cancellation.
 - Display local Greek time and explicit service date.
 - Distinguish scheduled, observed bookable, changed, cancelled, and unknown.
 - Show partial results instead of silently hiding coverage gaps.
 - Preserve English, Greek, and Albanian parity.
 - Keep the basic directory and reviewed schedules usable offline.
+- Never label a schedule-based estimated coach position as live.
 
 ### Acceptance criteria
 
@@ -594,6 +646,11 @@ Estimated effort: 6 to 10 person-weeks, partly parallel
 - VoiceOver, TalkBack, keyboard, contrast, dynamic type, and reduced motion are
   tested.
 - External booking handoff is tested without completing a purchase.
+- Contact-only operators have a tested call, email, address, hours, directions,
+  and offline fallback where those fields are officially published.
+- Saved tickets open offline, remain protected, and can be exported or deleted.
+- Push subscription deletion, trip expiry, local reminder replacement, quiet
+  hours, and notification-source labels are tested.
 
 ## 15. Release sequence
 
