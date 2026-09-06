@@ -15,18 +15,18 @@ One journey someone can confidently take. Not a national transport platform.
 
 ## Tickets
 
-| ID | Title | Type | Step | Depends on |
-|---|---|---|---|---|
-| [PILOT-01](tickets/PILOT-01-select-corridor.md) | Select the pilot corridor and operators, with a fallback | research | 2 | - |
-| [PILOT-02](tickets/PILOT-02-confirm-reuse-rights.md) | Confirm data reuse rights per operator | data-check | 2 | PILOT-01 |
-| [PILOT-03](tickets/PILOT-03-confirm-freshness-completeness.md) | Confirm timetable freshness and completeness | data-check | 2 | PILOT-01 |
-| [PILOT-04](tickets/PILOT-04-verify-boarding-points.md) | Verify exact boarding locations | data-check | 2 | PILOT-01 |
-| [PILOT-05](tickets/PILOT-05-verify-purchase-action.md) | Verify the official purchase or contact action | data-check | 2 | PILOT-01 |
-| [PILOT-06](tickets/PILOT-06-reviewed-gtfs-feed.md) | Build a reviewed GTFS feed for the corridor | build | 2 | PILOT-02, PILOT-03, PILOT-04 |
-| [PILOT-07](tickets/PILOT-07-data-check-gate.md) | Data-check decision gate D1 | decision-gate | 2 | PILOT-02..06 |
-| [PILOT-08](tickets/PILOT-08-publish-journey-page.md) | Publish one useful journey page | build | 3 | PILOT-06, PILOT-07 |
-| [PILOT-09](tickets/PILOT-09-five-traveller-test.md) | Test with five likely travellers | test | 4 | PILOT-08 |
-| [PILOT-10](tickets/PILOT-10-pilot-outcome-gate.md) | Pilot outcome gate D2 and hold on expansion | decision-gate | 5 | PILOT-09 |
+| ID | Title | Type | Step | Depends on | Issue |
+|---|---|---|---|---|---|
+| [PILOT-01](tickets/PILOT-01-select-corridor.md) | Select the pilot corridor and operators, with a fallback | research | 2 | - | [#2](https://github.com/peterdsp/HodoMap/issues/2) |
+| [PILOT-02](tickets/PILOT-02-confirm-reuse-rights.md) | Confirm data reuse rights per operator | data-check | 2 | PILOT-01 | [#3](https://github.com/peterdsp/HodoMap/issues/3) |
+| [PILOT-03](tickets/PILOT-03-confirm-freshness-completeness.md) | Confirm timetable freshness and completeness | data-check | 2 | PILOT-01 | [#4](https://github.com/peterdsp/HodoMap/issues/4) |
+| [PILOT-04](tickets/PILOT-04-verify-boarding-points.md) | Verify exact boarding locations | data-check | 2 | PILOT-01 | [#5](https://github.com/peterdsp/HodoMap/issues/5) |
+| [PILOT-05](tickets/PILOT-05-verify-purchase-action.md) | Verify the official purchase or contact action | data-check | 2 | PILOT-01 | [#6](https://github.com/peterdsp/HodoMap/issues/6) |
+| [PILOT-06](tickets/PILOT-06-reviewed-gtfs-feed.md) | Build a reviewed GTFS feed for the corridor | build | 2 | PILOT-02, PILOT-03, PILOT-04 | [#7](https://github.com/peterdsp/HodoMap/issues/7) |
+| [PILOT-07](tickets/PILOT-07-data-check-gate.md) | Data-check decision gate D1 | decision-gate | 2 | PILOT-02..06 | [#8](https://github.com/peterdsp/HodoMap/issues/8) |
+| [PILOT-08](tickets/PILOT-08-publish-journey-page.md) | Publish one useful journey page | build | 3 | PILOT-06, PILOT-07 | [#9](https://github.com/peterdsp/HodoMap/issues/9) |
+| [PILOT-09](tickets/PILOT-09-five-traveller-test.md) | Test with five likely travellers | test | 4 | PILOT-08 | [#10](https://github.com/peterdsp/HodoMap/issues/10) |
+| [PILOT-10](tickets/PILOT-10-pilot-outcome-gate.md) | Pilot outcome gate D2 and hold on expansion | decision-gate | 5 | PILOT-09 | [#11](https://github.com/peterdsp/HodoMap/issues/11) |
 
 ## Flow
 
